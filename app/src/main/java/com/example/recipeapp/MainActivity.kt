@@ -119,7 +119,7 @@ fun MainScreen(navController: NavHostController) {
             }
         }
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(8.dp))
 
         // Navigation buttons
         Row(
@@ -127,11 +127,11 @@ fun MainScreen(navController: NavHostController) {
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Button(onClick = { if (page > 1) page--; viewModel.fetchRecipes(page, 20) }) {
-                Text("Previous")
+            Button(onClick = { if (page > 1) page--; viewModel.fetchRecipes(page, 20) }, colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent)) {
+                Text("< Previous", color = Color.Black)
             }
-            Button(onClick = { page++; viewModel.fetchRecipes(page, 20) }) {
-                Text("Next")
+            Button(onClick = { page++; viewModel.fetchRecipes(page, 20) },colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent)) {
+                Text("Next >", color = Color.Black)
             }
         }
 

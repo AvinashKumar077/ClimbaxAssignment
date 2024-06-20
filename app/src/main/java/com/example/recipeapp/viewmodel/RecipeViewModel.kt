@@ -1,6 +1,5 @@
 package com.example.recipeapp.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -27,22 +26,29 @@ class RecipeViewModel @Inject constructor(
     fun fetchRecipes(page: Int, pageSize: Int) {
         viewModelScope.launch {
             try {
-                Log.d("RecipeViewModel", "Fetching recipes for page: $page")
                 val fetchedRecipes = repository.getRecipes(page, pageSize)
                 _recipes.value = fetchedRecipes
-                Log.d("RecipeViewModel", "Fetched ${fetchedRecipes.size} recipes")
-                Log.d("RecipeViewModel", "Recipes: $fetchedRecipes")
             } catch (e: Exception) {
-                Log.e("RecipeViewModel", "Error fetching recipes", e)
+                // Handle the error appropriately
             }
         }
     }
 
+    fun nextPage(pageSize: Int) {
+        currentPage++
+        fetchRecipes(currentPage, pageSize)
+    }
 
+    fun previousPage(pageSize: Int) {
+        if (currentPage > 1) {
+            currentPage--
+            fetchRecipes(currentPage, pageSize)
+        }
+    }
 
     fun toggleFavorite(recipe: Recipe) {
         repository.toggleFavorite(recipe.id)
         _favorites.value = repository.getFavoriteRecipes()
+        _recipes.value = _recipes.value // Trigger recomposition
     }
-
 }

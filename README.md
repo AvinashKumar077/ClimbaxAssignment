@@ -2,6 +2,8 @@
 
 RecipeApp is an Android application that demonstrates the use of various modern Android development tools and practices, including Dagger Hilt for dependency injection, Retrofit for networking, Jetpack Compose for UI, and MVVM (Model-View-ViewModel) architecture for managing UI-related data.
 
+## Video Demo :-    [Watch the video](https://www.youtube.com/watch?v=shorts/QQ3nI3k6uLM?feature=share)
+
 ## Features
 
 - **Fetch recipes from an API**: The app fetches recipes from a dummy API.
